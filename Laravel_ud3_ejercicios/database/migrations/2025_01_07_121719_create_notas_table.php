@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        // Crear la tabla 'notas' solo si no existe
+        if (!Schema::hasTable('notas')) {
+            Schema::create('notas', function (Blueprint $table) {
+                $table->id(); // Clave primaria
+                $table->foreignId('alumno_id')->constrained('alumnos')->onDelete('cascade'); // Clave foránea hacia alumnos
+                $table->foreignId('asignatura_id')->constrained('asignaturas')->onDelete('cascade'); // Clave foránea hacia asignaturas
+                $table->integer('nota'); // Campo para la nota
+                $table->timestamps(); // created_at y updated_at
+            });
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('notas');
+    }
+};

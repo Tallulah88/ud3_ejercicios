@@ -11,13 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Llamar al seeder AlumnosTableSeeder
-        $this->call(AlumnosTableSeeder::class);
-
-        // Si deseas mantener el usuario de prueba, puedes descomentarlo o eliminarlo según sea necesario.
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Llamar a los seeders de la base de datos
+        $this->call([
+            AlumnosTableSeeder::class,
+            AsignaturasTableSeeder::class,
+            NotasTableSeeder::class,
+        ]);
     }
 }
