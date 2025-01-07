@@ -53,3 +53,41 @@
 
 7. `php artisan migrate --seed`
    - Ejecuta las migraciones y luego los seeders configurados.
+
+## Respuesta al Ejercicio 8
+
+### ¿Qué pasos debemos dar si queremos añadir el campo `$table->string('apellido');` a la tabla `alumnos`?
+
+1. **Crear una nueva migración para modificar la tabla:**
+   - Ejecutar el comando:
+     ```bash
+     php artisan make:migration add_apellido_to_alumnos_table --table=alumnos
+     ```
+
+2. **Editar la migración:**
+   - Abrir el archivo generado en `database/migrations/<timestamp>_add_apellido_to_alumnos_table.php`.
+   - Añadir el siguiente código en la función `up()` para agregar la columna:
+     ```php
+     Schema::table('alumnos', function (Blueprint $table) {
+         $table->string('apellido')->after('nombre')->nullable(); // Añade la columna apellido
+     });
+     ```
+   - En la función `down()`, eliminar la columna:
+     ```php
+     Schema::table('alumnos', function (Blueprint $table) {
+         $table->dropColumn('apellido'); // Elimina la columna apellido
+     });
+     ```
+
+3. **Ejecutar la migración:**
+   - Ejecutar el comando:
+     ```bash
+     php artisan migrate
+     ```
+
+4. **Verificar la columna:**
+   - Conectarse a la base de datos y verificar que la tabla `alumnos` incluye la columna `apellido`:
+     ```sql
+     USE test2;
+     DESCRIBE alumnos;
+     ```
