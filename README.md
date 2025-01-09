@@ -1,3 +1,174 @@
+# Way of Working
+
+Este proyecto está diseñado para gestionar notas, asignaturas y alumnos mediante una API REST creada en Laravel. A continuación, se describen los requisitos tecnológicos, la configuración necesaria y los pasos a seguir para poner en funcionamiento la aplicación.
+
+## Requisitos Tecnológicos
+
+### Docker
+- Utilizado para configurar y ejecutar el contenedor de la base de datos MariaDB.
+- Asegúrate de tener Docker instalado en tu sistema. Puedes descargarlo desde [Docker](https://www.docker.com/).
+
+### Composer
+- Necesario para gestionar las dependencias de Laravel.
+- Asegúrate de tener Composer instalado. Descárgalo desde [Composer](https://getcomposer.org/).
+
+### PHP
+- Requiere PHP >= 8.1 con las extensiones necesarias para Laravel.
+
+### Postman
+- Utilizado para probar los endpoints de la API.
+- El archivo de colección de Postman, `Gestion Notas API.postman_collection.json`, se encuentra en la raíz del proyecto.
+
+---
+
+## Pasos para Configurar el Entorno
+
+### 1. Clonar el Repositorio
+
+Clona el proyecto desde el repositorio GitHub:
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd <NOMBRE_DEL_PROYECTO>
+```
+
+### 2. Configurar Docker para la Base de Datos
+
+Construye la imagen de MariaDB desde el Dockerfile:
+
+```bash
+docker build -t mariadb-custom .
+```
+
+Inicia el contenedor de la base de datos:
+
+```bash
+docker run -d --name mariadb-server -e MYSQL_ROOT_PASSWORD=m1_s3cr3t -e MYSQL_DATABASE=gestion_notas -p 3306:3306 mariadb-custom
+```
+
+### 3. Conectar a la Base de Datos
+
+Para conectarte al contenedor MariaDB:
+
+```bash
+docker exec -it mariadb-server mariadb -u root -p
+```
+
+Cuando te pida la contraseña, introduce: `m1_s3cr3t`.
+
+Comandos útiles dentro de MariaDB:
+
+```sql
+SHOW DATABASES;
+USE gestion_notas;
+SHOW TABLES;
+```
+
+### 4. Configurar el Archivo `.env`
+
+Copia el archivo `.env.example` y renómbralo como `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Asegúrate de configurar las siguientes líneas en el archivo `.env` para conectar Laravel a la base de datos:
+
+```env
+DB_CONNECTION=mariadb
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gestion_notas
+DB_USERNAME=root
+DB_PASSWORD=m1_s3cr3t
+```
+
+Genera la clave de la aplicación:
+
+```bash
+php artisan key:generate
+```
+
+### 5. Instalar las Dependencias
+
+Ejecuta el siguiente comando para instalar todas las dependencias del proyecto:
+
+```bash
+composer install
+```
+
+### 6. Migrar las Tablas y Poblar la Base de Datos
+
+Ejecuta las migraciones para crear las tablas necesarias:
+
+```bash
+php artisan migrate
+```
+
+Puebla la base de datos con datos de prueba:
+
+```bash
+php artisan db:seed
+```
+
+### 7. Iniciar el Servidor de Desarrollo
+
+Inicia el servidor de Laravel:
+
+```bash
+php artisan serve
+```
+
+El servidor estará disponible en: [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+---
+
+## Pruebas con Postman
+
+El archivo `Gestion Notas API.postman_collection.json` contiene todas las consultas necesarias para probar los endpoints. Este archivo se encuentra en la raíz del proyecto.
+
+### Cómo Importar el Archivo en Postman
+
+1. Abre Postman.
+2. Haz clic en **Import**.
+3. Selecciona el archivo `Gestion Notas API.postman_collection.json`.
+4. Prueba los endpoints utilizando las rutas documentadas.
+
+---
+
+## Detalles Adicionales
+
+### Comandos útiles
+
+- Limpiar la caché:
+
+```bash
+php artisan cache:clear
+php artisan route:clear
+php artisan config:clear
+```
+
+- Ver las rutas registradas:
+
+```bash
+php artisan route:list
+```
+
+### Estructura del proyecto
+
+- `routes/api.php`: Archivo donde están definidas todas las rutas de la API.
+- `app/Http/Controllers`: Controladores para manejar la lógica de los endpoints.
+- `database/migrations`: Migraciones para crear las tablas de la base de datos.
+- `database/seeders`: Seeders para poblar la base de datos con datos de prueba.
+
+### Credenciales de la base de datos
+
+- **Usuario**: `root`
+- **Contraseña**: `m1_s3cr3t`
+
+
+
+
 ## Respuestas al Ejercicio 4
 
 1. ¿Qué hace el método `create` de la clase `Schema`?

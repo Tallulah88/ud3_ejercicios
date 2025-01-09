@@ -1,0 +1,257 @@
+{
+  "info": {
+    "name": "Gestion Notas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Alumnos",
+      "item": [
+        {
+          "name": "Get all alumnos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/alumnos",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "alumnos"]
+            }
+          }
+        },
+        {
+          "name": "Get alumno by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/alumnos/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "alumnos", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Create alumno",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Nuevo Alumno\",\n  \"email\": \"nuevo.alumno@example.com\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/alumnos",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "alumnos"]
+            }
+          }
+        },
+        {
+          "name": "Update alumno",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Alumno Actualizado\",\n  \"email\": \"actualizado@example.com\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/alumnos/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "alumnos", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete alumno",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/alumnos/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "alumnos", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notas",
+      "item": [
+        {
+          "name": "Get all notas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/notas",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "notas"]
+            }
+          }
+        },
+        {
+          "name": "Get nota by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/notas/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "notas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Create nota",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alumno_id\": 1,\n  \"asignatura_id\": 1,\n  \"nota\": 9.5\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/notas",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "notas"]
+            }
+          }
+        },
+        {
+          "name": "Update nota",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alumno_id\": 1,\n  \"asignatura_id\": 1,\n  \"nota\": 8.0\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/notas/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "notas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete nota",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/notas/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "notas", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Asignaturas",
+      "item": [
+        {
+          "name": "Get all asignaturas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/asignaturas",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "asignaturas"]
+            }
+          }
+        },
+        {
+          "name": "Get asignatura by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/asignaturas/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "asignaturas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Create asignatura",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Nueva Asignatura\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/asignaturas",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "asignaturas"]
+            }
+          }
+        },
+        {
+          "name": "Update asignatura",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Asignatura Actualizada\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/asignaturas/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "asignaturas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete asignatura",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/asignaturas/:id",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "asignaturas", ":id"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
