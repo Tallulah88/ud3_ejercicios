@@ -9,18 +9,32 @@ class Alumno extends Model
 {
     use HasFactory;
 
-    // Nombre de la tabla asociada
     protected $table = 'alumnos';
 
-    // Campos asignables en la base de datos
     protected $fillable = [
         'nombre',
         'email',
     ];
 
-    // Relaciones (opcional, para futuros ejercicios)
     public function notas()
     {
         return $this->hasMany(Nota::class);
+    }
+
+    public function perfil()
+    {
+        return $this->hasOne(Perfil::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function asignaturas()
+    {
+        return $this->belongsToMany(Asignatura::class, 'notas')
+                    ->withPivot('nota')
+                    ->withTimestamps();
     }
 }
